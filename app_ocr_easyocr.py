@@ -17,7 +17,7 @@ st.markdown("""
         height: 3em;
         font-size: 1.1rem;
         font-weight: 600;
-        border-radius: 12px !important;
+        border-radius: 18px !important;
     }
     /* Allarga il pulsante di download */
     .stDownloadButton > button {
@@ -27,7 +27,7 @@ st.markdown("""
         height: 3em;
         font-size: 1.1rem;
         font-weight: 600;
-        border-radius: 12px !important;
+        border-radius: 18px !important;
     }
     </style>
 """, unsafe_allow_html=True)
