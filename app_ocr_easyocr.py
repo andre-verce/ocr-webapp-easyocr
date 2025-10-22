@@ -50,7 +50,7 @@ selected_langs = st.multiselect(
 # --- Analisi immagine ---
 if uploaded_file:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Immagine caricata", use_column_width=True)
+    st.image(image, caption="Immagine caricata", use_container_width=True)
 
     # Pulsante "Analizza" centrato e largo
     if st.button("🔍 Analizza immagine"):
