@@ -16,7 +16,7 @@ st.markdown("""
     <style>
     /* Pulsanti centrati e larghi */
     div.stButton > button, .stDownloadButton > button {
-        width: 80%;
+        width: 110%;
         height: 3em;
         font-size: 1.1rem;
         font-weight: 600;
