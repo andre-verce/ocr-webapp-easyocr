@@ -7,17 +7,27 @@ import time
 # --- Configurazione pagina ---
 st.set_page_config(page_title="OCR Web App (EasyOCR)", page_icon="🔠", layout="centered")
 
+# --- Inizializza session state per mantenere il testo ---
+if "ocr_text" not in st.session_state:
+    st.session_state.ocr_text = ""
+
 # --- Stile CSS personalizzato ---
 st.markdown("""
     <style>
+    /* Pulsanti centrati e larghi */
     div.stButton > button, .stDownloadButton > button {
-        display: block;
-        margin: 0.75em auto;
-        width: 110%;
+        width: 80%;
         height: 3em;
         font-size: 1.1rem;
         font-weight: 600;
         border-radius: 18px !important;
+    }
+    /* Container pulsanti centrato */
+    div.stButton, .stDownloadButton {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -57,22 +67,27 @@ if uploaded_file:
 
         # --- Esegui OCR ---
         result = reader.readtext(np.array(image), detail=0)
-
         text = "\n".join(result).strip() or "[Nessun testo riconosciuto]"
+
+        # --- Salva testo in session state ---
+        st.session_state.ocr_text = text
 
         st.success("✅ Analisi completata!")
 
-        # --- Conteggio parole e caratteri ---
-        words_count = len(text.split())
-        chars_count = len(text)
+# --- Visualizza testo salvato in session state ---
+st.text_area("📝 Testo riconosciuto:", st.session_state.ocr_text, height=300)
 
-        st.text_area("📝 Testo riconosciuto:", text, height=300)
-        st.write(f"**Parole riconosciute:** {words_count}  |  **Caratteri totali:** {chars_count}")
+# --- Conteggio parole e caratteri ---
+words_count = len(st.session_state.ocr_text.split())
+chars_count = len(st.session_state.ocr_text)
+if st.session_state.ocr_text:
+    st.write(f"**Parole riconosciute:** {words_count}  |  **Caratteri totali:** {chars_count}")
 
-        # --- Pulsante download ---
-        st.download_button(
-            label="💾 Scarica risultato come .txt",
-            data=text,
-            file_name="risultato_ocr.txt",
-            mime="text/plain"
-        )
+# --- Pulsante download ---
+if st.session_state.ocr_text:
+    st.download_button(
+        label="💾 Scarica risultato come .txt",
+        data=st.session_state.ocr_text,
+        file_name="risultato_ocr.txt",
+        mime="text/plain"
+    )
