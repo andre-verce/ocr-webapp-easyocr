@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 
 # --- Configurazione pagina ---
-st.set_page_config(page_title="OCR Web App (EasyOCR)", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="OCR Web App (EasyOCR)", page_icon="🔠", layout="centered")
 
 # --- Stile CSS personalizzato ---
 st.markdown("""
