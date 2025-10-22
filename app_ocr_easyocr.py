@@ -13,7 +13,7 @@ st.markdown("""
     div.stButton > button, .stDownloadButton > button {
         display: block;
         margin: 0.75em auto;
-        width: 80%;
+        width: 110%;
         height: 3em;
         font-size: 1.1rem;
         font-weight: 600;
